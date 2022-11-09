@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <q-btn @click="access">Ingresar</q-btn>
-    <q-btn @click="access">Crear Cotizacion</q-btn>
+    <q-btn @click="createCotizacion">Crear Cotizacion</q-btn>
     {{token}} - {{expiresIn}}
   </q-page>
 </template>
@@ -23,11 +23,52 @@ const access = async () => {
     console.log(res.data);
     token.value = res.data.token;
     expiresIn.value = res.data.expiresIn;
+    setTime();
   } catch(error) { 
     console.log(error) 
   }
 
   
+}
+
+const createCotizacion = async() => {
+  try {
+    const res = await api({
+      method: 'POST',
+      url: '/cotizaciones',
+      headers: {
+        'Authorization': 'Bearer ' + token.value
+      },
+      data: {
+        meb: "2800",
+        cliente: "Los Pelambres",
+        solicitante: "Leonid Carrizo",
+        solicitud: "6010112201",
+        marca: "IMO",
+        modelo:"D4 070N2 LVBE",
+        pn: "188334",
+        qty: "1",
+        origen: "Alemania",
+        iso: "2022002",
+        o: "4503315259",
+        order_confir: "IM  1936761",
+        p_unitario_venta: "15863",
+        p_total_venta: "15863",
+        entregada: "19/5/2022",
+        guiad: "2663",
+        factura: "2964"
+      }
+    });
+    console.log(res.data)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const setTime = () => {
+  setTimeout(() => {
+    refreshToken()
+  }, expiresIn.value * 1000 - 6000)
 }
 
 const refreshToken = async() => {
@@ -41,6 +82,6 @@ const refreshToken = async() => {
   }
 
 }
-
 refreshToken();
+
 </script>
