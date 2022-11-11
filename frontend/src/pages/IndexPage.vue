@@ -1,35 +1,19 @@
 <template>
   <q-page padding>
-    <q-btn @click="access">Ingresar</q-btn>
+    <q-btn @click="userStore.access">Ingresar</q-btn>
     <q-btn @click="createCotizacion">Crear Cotizacion</q-btn>
-    {{token}} - {{expiresIn}}
+    <q-btn @click="userStore.logout">Cerrar sesion</q-btn>
+    {{userStore.token}} - {{userStore.expiresIn}}
   </q-page>
 </template>
 
 <script setup>
 import { api } from 'src/boot/axios';
-import { ref } from 'vue';
+import { useUserStore} from '../stores/user-store'
 
-const token = ref('');
-const expiresIn = ref('');
+const userStore = useUserStore();
 
-const access = async () => {
-  try {
-    console.log('me diste click')
-    const res = await api.post('/auth/login', {
-      email: "    pr1sd23@admin.cl",
-      password: "123asd13"
-    })
-    console.log(res.data);
-    token.value = res.data.token;
-    expiresIn.value = res.data.expiresIn;
-    setTime();
-  } catch(error) { 
-    console.log(error) 
-  }
-
-  
-}
+userStore.refreshToken();
 
 const createCotizacion = async() => {
   try {
@@ -64,24 +48,5 @@ const createCotizacion = async() => {
     console.log(error);
   }
 }
-
-const setTime = () => {
-  setTimeout(() => {
-    refreshToken()
-  }, expiresIn.value * 1000 - 6000)
-}
-
-const refreshToken = async() => {
-  try {
-    const res = await api.get('/auth/refresh');
-    console.log(res.data);
-    token.value = res.data.token;
-    expiresIn.value = res.data.expiresIn;
-  } catch(error) {
-    console.log(error)
-  }
-
-}
-refreshToken();
 
 </script>
