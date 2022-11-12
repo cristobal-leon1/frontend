@@ -15,9 +15,10 @@
           Sogeco S.A.
         </q-toolbar-title>
 
-        <q-btn color="green">Ingresar</q-btn>
-        <q-btn color="red">Cerrar sesión</q-btn>
-        <q-btn>Protected</q-btn>
+        <q-btn color="dark" to="/">Inicio</q-btn>
+        <q-btn color="green" @click="userStore.access">Ingresar</q-btn>
+        <q-btn color="red" @click="userStore.logout">Cerrar sesión</q-btn>
+        <q-btn to="/protected">Protected</q-btn>
       </q-toolbar>
     </q-header>
 
@@ -50,6 +51,10 @@
 <script setup>
 import {  ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import { useUserStore } from '../stores/user-store'
+
+const userStore = useUserStore();
+
 const leftDrawerOpen = ref(false)
 const essentialLinks = [
   {

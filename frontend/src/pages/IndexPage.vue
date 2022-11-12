@@ -1,8 +1,8 @@
 <template>
   <q-page padding>
-    <q-btn @click="userStore.access">Ingresar</q-btn>
+    <!--<q-btn @click="userStore.access">Ingresar</q-btn>
+    <q-btn @click="userStore.logout">Cerrar sesion</q-btn>-->
     <q-btn @click="createCotizacion">Crear Cotizacion</q-btn>
-    <q-btn @click="userStore.logout">Cerrar sesion</q-btn>
     {{userStore.token}} - {{userStore.expiresIn}}
   </q-page>
 </template>
@@ -13,7 +13,7 @@ import { useUserStore} from '../stores/user-store'
 
 const userStore = useUserStore();
 
-userStore.refreshToken();
+//userStore.refreshToken();
 
 const createCotizacion = async() => {
   try {
