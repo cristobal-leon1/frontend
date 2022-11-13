@@ -1,21 +1,22 @@
 <template>
   <q-page padding>
-    <!--<q-btn @click="userStore.access">Ingresar</q-btn>
-    <q-btn @click="userStore.logout">Cerrar sesion</q-btn>-->
     <h3>Cotizaciones</h3>
-    <q-btn @click="createCotizacion">Crear Cotizacion</q-btn>
-    
+    <q-btn @click="cotizacionStore.createCotizacion">Crear Cotizacion</q-btn>
+    <pre>
+      {{ cotizacionStore.cotizaciones }}
+    </pre>
   </q-page>
 </template>
 
 <script setup>
-import { api } from 'src/boot/axios';
 import { useUserStore} from '../stores/user-store'
+import { useCotizacionStore } from '../stores/cotizacion-store'
 
 const userStore = useUserStore();
+const cotizacionStore = useCotizacionStore();
 
 //userStore.refreshToken();
-
+/*
 const createCotizacion = async() => {
   try {
     const res = await api({
@@ -49,5 +50,5 @@ const createCotizacion = async() => {
     console.log(error);
   }
 }
-
+*/
 </script>

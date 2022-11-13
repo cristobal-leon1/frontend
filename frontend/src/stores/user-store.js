@@ -2,9 +2,11 @@ import { defineStore } from "pinia";
 import { api } from "src/boot/axios";
 import { ref } from "vue";
 
+
 export const useUserStore = defineStore("user", () => {
   const token = ref(null);
   const expiresIn = ref(null);
+  const vendedores = ref([]);
 
   const access = async (email, password) => {
     try {
@@ -89,6 +91,32 @@ export const useUserStore = defineStore("user", () => {
     expiresIn.value = null;
   };
 
+  const getVendedores = async() => {
+    try {
+      const res2 = await api.get("/auth/refresh");
+      token.value = res2.data.token;
+      //$q.loading.show();
+      console.log("llamando a todos los vendedores 🎉");
+      const res = await api({
+        url: "/auth/protected",
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token.value,
+        },
+      });
+      //links.value = res.data.links.map((nombre) => nombre);
+      vendedores.value = [...res.data.vendedores];
+
+
+    } catch (error) {
+      console.log(error.response?.data || error);
+    } finally {
+      //$q.loading.hide();
+    }
+  }
+
+  getVendedores();
+
   return {
     token,
     expiresIn,
@@ -96,5 +124,7 @@ export const useUserStore = defineStore("user", () => {
     refreshToken,
     logout,
     register,
+    vendedores,
+    getVendedores
   };
 });
