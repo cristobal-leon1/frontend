@@ -12,7 +12,6 @@
 import { useUserStore} from '../stores/user-store'
 import { useCotizacionStore } from '../stores/cotizacion-store'
 
-const userStore = useUserStore();
 const cotizacionStore = useCotizacionStore();
 
 //userStore.refreshToken();

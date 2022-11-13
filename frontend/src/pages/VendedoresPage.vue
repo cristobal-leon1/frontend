@@ -1,3 +1,13 @@
+<script setup>
+import { useUserStore } from '../stores/user-store'
+
+const userStore = useUserStore();
+
+
+
+
+</script>
+
 <template>
     <q-page padding>
         <h3>Vendedores</h3>
@@ -9,13 +19,3 @@
     
 </template>
 
-<script setup>
-import { useUserStore } from '../stores/user-store'
-import { useRouter } from 'vue-router'
-
-const userStore = useUserStore();
-const router = useRouter();
-
-
-
-</script>

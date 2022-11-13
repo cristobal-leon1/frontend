@@ -82,6 +82,5 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   return {
     createCotizacion,
     cotizaciones,
-    getCotizaciones
   };
 });
