@@ -19,15 +19,42 @@ export default route(function (/* { store, ssrContext } */) {
   Router.beforeEach(async(to, from, next) => {
     const requiredAuth = to.meta.auth
     const userStore = useUserStore();
-    await userStore.refreshToken();
 
-
-    if(requiredAuth) {
-      if(userStore.token) return next()
-      next("/login")
+    if(userStore.token) {
+        return next();
     }
 
-    next();
+    if (requiredAuth || sessionStorage.getItem("user")) {
+      await userStore.refreshToken();
+      if (userStore.token) {
+        return next();
+      }
+      return next("/login");
+    }
+    return next();
+
+    //si no existe el token 
+    /*if(sessionStorage.getItem('user')) {
+      await userStore.refreshToken();
+      if(requiredAuth) {
+      
+        if(userStore.token) return next()
+        return next("/login")
+      } else {
+        return next()
+      }
+    }else{
+      if(requiredAuth){
+        await userStore.refreshToken();
+        if(userStore.token) return next()
+        return next("/login")
+      }
+      next();
+    }
+    */
+    
+
+   
   });
 
   return Router
