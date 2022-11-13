@@ -15,11 +15,9 @@
         <q-toolbar-title>
           Sogeco S.A.
         </q-toolbar-title>
-
-        <q-btn v-if="userStore.token" color="dark" to="/">Inicio</q-btn>
-        <q-btn v-if="!userStore.token" color="green" @click="accessUser">Ingresar</q-btn>
+        <!--<q-btn v-if="!userStore.token" color="green" @click="accessUser">Ingresar</q-btn>-->
         
-        <q-btn v-if="userStore.token" to="/protected">Protected</q-btn>
+        
         <q-btn v-if="userStore.token" color="red" @click="logout">Cerrar sesión</q-btn>
       </q-toolbar>
     </q-header>
@@ -41,6 +39,7 @@
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
+          
         />
       </q-list>
     </q-drawer>
@@ -64,29 +63,25 @@ const leftDrawerOpen = ref(false)
 const essentialLinks = [
   {
     title: 'Cotizaciones',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+    link: '/'
   },
   {
     title: 'Productos',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
+    link: '/productos'
   },
   {
     title: 'Vendedores',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
+    link: '/vendedores'
   },
   {
     title: 'Ventas',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
+    link: '/ventas'
   },
 ]
+
+const redirectt = (link) => {
+  router.push(link)
+}
 
 
 

@@ -23,6 +23,7 @@ export default route(function (/* { store, ssrContext } */) {
     if(userStore.token) {
         return next();
     }
+    
 
     if (requiredAuth || sessionStorage.getItem("user")) {
       await userStore.refreshToken();
@@ -32,9 +33,9 @@ export default route(function (/* { store, ssrContext } */) {
       return next("/login");
     }
     return next();
-
+ /*
     //si no existe el token 
-    /*if(sessionStorage.getItem('user')) {
+    if(sessionStorage.getItem('user')) {
       await userStore.refreshToken();
       if(requiredAuth) {
       
@@ -51,8 +52,8 @@ export default route(function (/* { store, ssrContext } */) {
       }
       next();
     }
-    */
     
+       */
 
    
   });

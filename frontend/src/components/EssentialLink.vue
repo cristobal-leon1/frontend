@@ -2,20 +2,22 @@
   <q-item
     clickable
     tag="a"
-    target="_blank"
-    :href="link"
+    :to="link"
   >
-  
 
     <q-item-section>
       <q-item-label>{{ title }}</q-item-label>
-      <q-item-label caption>{{ caption }}</q-item-label>
     </q-item-section>
   </q-item>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
+import { useUserStore } from '../stores/user-store'
+import { useRouter } from 'vue-router'
+
+const userStore = useUserStore();
+const router = useRouter();
 
 export default defineComponent({
   name: 'EssentialLink',
@@ -24,15 +26,8 @@ export default defineComponent({
       type: String,
       required: true
     },
-
-    caption: {
-      type: String,
-      default: ''
-    },
-
     link: {
       type: String,
-      default: '#'
     },
   }
 })
