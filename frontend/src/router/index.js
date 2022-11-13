@@ -1,7 +1,7 @@
 import { route } from 'quasar/wrappers'
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
 import routes from './routes'
-
+import { useUserStore } from '../stores/user-store';
 
 
 export default route(function (/* { store, ssrContext } */) {
@@ -15,6 +15,20 @@ export default route(function (/* { store, ssrContext } */) {
 
     history: createHistory(process.env.VUE_ROUTER_BASE)
   })
+
+  Router.beforeEach(async(to, from, next) => {
+    const requiredAuth = to.meta.auth
+    const userStore = useUserStore();
+    await userStore.refreshToken();
+
+
+    if(requiredAuth) {
+      if(userStore.token) return next()
+      next("/login")
+    }
+
+    next();
+  });
 
   return Router
 })

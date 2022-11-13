@@ -3,6 +3,7 @@
     <q-header elevated>
       <q-toolbar>
         <q-btn
+        v-if="userStore.token"
           flat
           dense
           round
@@ -15,14 +16,16 @@
           Sogeco S.A.
         </q-toolbar-title>
 
-        <q-btn color="dark" to="/">Inicio</q-btn>
-        <q-btn color="green" @click="userStore.access">Ingresar</q-btn>
-        <q-btn color="red" @click="userStore.logout">Cerrar sesión</q-btn>
-        <q-btn to="/protected">Protected</q-btn>
+        <q-btn v-if="userStore.token" color="dark" to="/">Inicio</q-btn>
+        <q-btn v-if="!userStore.token" color="green" @click="accessUser">Ingresar</q-btn>
+        
+        <q-btn v-if="userStore.token" to="/protected">Protected</q-btn>
+        <q-btn v-if="userStore.token" color="red" @click="logout">Cerrar sesión</q-btn>
       </q-toolbar>
     </q-header>
 
     <q-drawer
+    v-if="userStore.token"
       v-model="leftDrawerOpen"
       show-if-above
       bordered
@@ -52,8 +55,10 @@
 import {  ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 import { useUserStore } from '../stores/user-store'
+import { useRouter } from 'vue-router'
 
 const userStore = useUserStore();
+const router = useRouter();
 
 const leftDrawerOpen = ref(false)
 const essentialLinks = [
@@ -82,6 +87,21 @@ const essentialLinks = [
     link: 'https://forum.quasar.dev'
   },
 ]
+
+
+
+const logout = () => {
+  userStore.logout()
+  router.push('/login')
+}
+
+const accessUser = async() => {
+  await userStore.access();
+  router.push('')
+}
+
+
+
 function toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
       }

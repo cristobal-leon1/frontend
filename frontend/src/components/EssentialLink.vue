@@ -5,12 +5,7 @@
     target="_blank"
     :href="link"
   >
-    <q-item-section
-      v-if="icon"
-      avatar
-    >
-      <q-icon :name="icon" />
-    </q-item-section>
+  
 
     <q-item-section>
       <q-item-label>{{ title }}</q-item-label>
@@ -39,11 +34,6 @@ export default defineComponent({
       type: String,
       default: '#'
     },
-
-    icon: {
-      type: String,
-      default: ''
-    }
   }
 })
 </script>
