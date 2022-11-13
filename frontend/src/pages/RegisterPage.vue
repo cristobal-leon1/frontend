@@ -7,14 +7,17 @@ const $q = useQuasar();
 const userStore = useUserStore();
 const router = useRouter();
 const email = ref("");
+const nombre = ref('')
 const password = ref("");
 const repassword = ref("");
+
 const handleSubmit = async () => {
   try {
     console.log("pasó las validaciones");
-    await userStore.register(email.value, password.value, repassword.value);
+    await userStore.register(email.value, nombre.value, password.value, repassword.value);
     router.push("/");
     email.value = "";
+    nombre.value = '';
     password.value = "";
   } catch (error) {
     console.log("error", error);
@@ -52,6 +55,12 @@ const alertDialogBackend = (message = "Error en el servidor") => {
         ></q-input>
 
         <q-input
+          v-model="nombre"
+          label="Ingrese Nombre"
+          type="text"
+        ></q-input>
+
+        <q-input
           v-model="password"
           label="Ingrese contraseña"
           type="password"
@@ -72,7 +81,7 @@ const alertDialogBackend = (message = "Error en el servidor") => {
         ></q-input>
 
         <div>
-          <q-btn label="Login" type="submit"></q-btn>
+          <q-btn label="Registrar" type="submit"></q-btn>
         </div>
       </q-form>
     </div>

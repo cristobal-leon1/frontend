@@ -28,10 +28,11 @@ export const useUserStore = defineStore("user", () => {
     }
   };
 
-  const register = async (email, password, repassword) => {
+  const register = async (email, nombre, password, repassword) => {
     try {
       const res = await api.post("/auth/register", {
         email: email,
+        nombre: nombre,
         password: password,
         repassword: repassword,
       });

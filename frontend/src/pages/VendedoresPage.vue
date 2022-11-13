@@ -1,6 +1,10 @@
 <template>
-    <h3>Vendedores</h3>
-    <q-btn v-if="userStore.token" to="/register">Registrar Vendedor</q-btn>
+    <q-page padding>
+        <h3>Vendedores</h3>
+        <q-btn v-if="userStore.token" to="/register" class="q-mr-sm">Registrar Vendedor</q-btn>
+    
+    </q-page>
+    
 </template>
 
 <script setup>

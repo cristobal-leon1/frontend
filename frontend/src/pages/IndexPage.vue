@@ -2,8 +2,9 @@
   <q-page padding>
     <!--<q-btn @click="userStore.access">Ingresar</q-btn>
     <q-btn @click="userStore.logout">Cerrar sesion</q-btn>-->
+    <h3>Cotizaciones</h3>
     <q-btn @click="createCotizacion">Crear Cotizacion</q-btn>
-    {{userStore.token}} - {{userStore.expiresIn}}
+    
   </q-page>
 </template>
 
