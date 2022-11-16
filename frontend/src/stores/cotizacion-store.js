@@ -78,9 +78,31 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   // por ahora tiene mejor rendimiento
   getCotizaciones();
 
+  const removeCotizacion = async(meb) => {
+    try {
+      //$q.loading.show();
+      const res = await api({
+        method: 'DELETE',
+        url: '/cotizaciones',
+        headers: {
+          'Authorization': 'Bearer ' + userStore.token
+        },
+        data: {
+          meb,
+        }
+      });
+    } catch (error) {
+      throw error.response?.data || error;
+    } finally {
+     // $q.loading.hide();
+    }
+  }
+
+
 
   return {
     createCotizacion,
     cotizaciones,
+    removeCotizacion
   };
 });

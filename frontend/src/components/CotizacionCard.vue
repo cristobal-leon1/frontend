@@ -1,5 +1,10 @@
 <script setup>
 
+import { useCotizacionStore } from "src/stores/cotizacion-store";
+import { useNotify } from "../componsables/notifyHook";
+const useCotizacion = useCotizacionStore();
+const { showNotify } = useNotify();
+
 defineProps({
     cotizacion: Object
 })
@@ -19,6 +24,9 @@ defineProps({
        <div class="row items-center no-wrap">
          <div class="col">
            <div class="text-h6">{{ cotizacion.cliente}}</div>
+           <q-card-section>
+       
+      </q-card-section>
            <div class="text-subtitle2">  {{ cotizacion }}  </div>
            <div class="text-subtitle2">  dato  </div>
          </div>
@@ -28,7 +36,7 @@ defineProps({
              <q-menu cover auto-close>
                <q-list>
                  <q-item clickable>
-                   <q-item-section>Eliminar cotización</q-item-section>
+                   <q-item-section >Eliminar cotización</q-item-section>
                  </q-item>
                  <q-item clickable>
                    <q-item-section>Editar Cotización</q-item-section>
@@ -42,7 +50,7 @@ defineProps({
      </q-card-section>
 
      <q-card-section>
-       {{ lorem }}
+       
      </q-card-section>
 
      <q-separator />
