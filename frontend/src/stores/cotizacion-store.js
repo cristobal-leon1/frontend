@@ -2,14 +2,14 @@ import { defineStore } from "pinia";
 import { api } from "src/boot/axios";
 import { ref } from "vue";
 import { useUserStore } from "./user-store";
-import { useQuasar } from "quasar";
+
 
 export const useCotizacionStore = defineStore("cotizacion", () => {
   
   const userStore = useUserStore();
 
   const cotizaciones = ref([]);
-  const $q = useQuasar();
+
 
 
   const createCotizacion = async(meb, cliente, solicitante, email, fono, solicitud, marca, modelo, pn, qty, origen, iso, oc, order_confir, p_unitario_venta, p_total_venta, entregada, entregada1,  entregada2,  guiad, factura, num_credito, nva_factura) => {
@@ -51,7 +51,7 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
     } catch (error) {
       throw error.response?.data || error;
     } finally {
-      //$q.loading.hide();
+     // $q.loading.hide();
     }
   }
 

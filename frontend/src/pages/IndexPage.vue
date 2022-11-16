@@ -1,7 +1,8 @@
 <template>
   <q-page padding>
     <h3>Cotizaciones</h3>
-    <q-btn @click="cotizacionStore.createCotizacion">Crear Cotizacion</q-btn>
+    <q-btn to="/agregarcotizacion">Crear Cotizacion</q-btn>
+    
     <pre>
       {{ cotizacionStore.cotizaciones }}
     </pre>
@@ -9,7 +10,8 @@
 </template>
 
 <script setup>
-import { useUserStore} from '../stores/user-store'
+
+
 import { useCotizacionStore } from '../stores/cotizacion-store'
 
 const cotizacionStore = useCotizacionStore();
