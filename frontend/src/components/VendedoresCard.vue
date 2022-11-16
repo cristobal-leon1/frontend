@@ -1,7 +1,7 @@
 <script setup>
 
 defineProps({
-    cotizacion: Object
+    vendedor: Object
 })
 
 </script>
@@ -18,9 +18,8 @@ defineProps({
      <q-card-section>
        <div class="row items-center no-wrap">
          <div class="col">
-           <div class="text-h6">{{ cotizacion.cliente}}</div>
-           <div class="text-subtitle2">  {{ cotizacion }}  </div>
-           <div class="text-subtitle2">  dato  </div>
+           <div class="text-h6">{{vendedor.nombre}}</div>
+           <div class="text-subtitle2">  {{vendedor.email}}  </div>
          </div>
 
          <div class="col-auto">
@@ -28,10 +27,10 @@ defineProps({
              <q-menu cover auto-close>
                <q-list>
                  <q-item clickable>
-                   <q-item-section>Eliminar cotización</q-item-section>
+                   <q-item-section>Eliminar vendedor</q-item-section>
                  </q-item>
                  <q-item clickable>
-                   <q-item-section>Editar Cotización</q-item-section>
+                   <q-item-section>Editar vendedor</q-item-section>
                  </q-item>
                  
                </q-list>
@@ -48,7 +47,7 @@ defineProps({
      <q-separator />
 
      <q-card-actions>
-       <q-btn flat>Marcar como vendida</q-btn>
+       <q-btn flat>Ver Comisiones</q-btn>
      </q-card-actions>
    </q-card>
 </div>

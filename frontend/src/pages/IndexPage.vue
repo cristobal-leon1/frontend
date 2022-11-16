@@ -3,14 +3,14 @@
     <h3>Cotizaciones</h3>
     <q-btn to="/agregarcotizacion">Crear Cotizacion</q-btn>
     
-    <pre>
+    <!--<pre>
       {{ cotizacionStore.cotizaciones }}
-    </pre>
+    </pre>-->
     
     <template v-for=" cotizacion of cotizacionStore.cotizaciones "
     :key="cotizacion._id"
     >
-      <CotizacionCard></CotizacionCard>
+      <CotizacionCard :cotizacion="cotizacion"/>
     </template>
 
     
