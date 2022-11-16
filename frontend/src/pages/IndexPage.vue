@@ -10,7 +10,7 @@
     <template v-for=" cotizacion of cotizacionStore.cotizaciones "
     :key="cotizacion._id"
     >
-      <CotizacionCard :cotizacion="cotizacion"/>
+      <CotizacionCard v-if="cotizacion.estado==='procesando'" :cotizacion="cotizacion"/>
     </template>
 
     
