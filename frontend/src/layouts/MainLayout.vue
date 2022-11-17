@@ -66,8 +66,8 @@ const essentialLinks = [
     link: '/'
   },
   {
-    title: 'Productos',
-    link: '/productos'
+    title: 'Clientes',
+    link: '/clientes'
   },
   {
     title: 'Vendedores',

@@ -1,7 +1,7 @@
 <template>
     
     <q-page padding>
-        <h3>Productos</h3>
+        <h3>Clientes</h3>
     
      </q-page>
 </template>

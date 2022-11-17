@@ -8,7 +8,7 @@ const routes = [
       { path: 'login', component: () => import('pages/LoginPage.vue')},
       { path: "register", component: () => import("pages/RegisterPage.vue"), meta: {auth: true} },
       { path: "vendedores", component: () => import("pages/VendedoresPage.vue") , meta: {auth: true}},
-      { path: "productos", component: () => import("pages/ProductosPage.vue"), meta: {auth: true} },
+      { path: "clientes", component: () => import("pages/ClientesPage.vue"), meta: {auth: true} },
       { path: "ventas", component: () => import("pages/VentasPage.vue") , meta: {auth: true}},
       { path: "agregarcotizacion", component: () => import("pages/AgregarCotizacionPage.vue") , meta: {auth: true}},
     ]
