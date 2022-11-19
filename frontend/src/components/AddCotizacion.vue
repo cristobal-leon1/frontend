@@ -102,14 +102,14 @@ const addCotizacion = async () => {
     <q-input
       v-model="email"
       label="Ingrese Email aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+      
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="fono"
       label="Ingrese Fono aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+      
       lazy-rules
     ></q-input>
 
@@ -158,21 +158,21 @@ const addCotizacion = async () => {
     <q-input
       v-model="iso"
       label="Ingrese ISO aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+      
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="oc"
       label="Ingrese O/C aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+      
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="order_confir"
       label="Ingrese orden confirmada aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+      
       lazy-rules
     ></q-input>
 
@@ -186,56 +186,56 @@ const addCotizacion = async () => {
     <q-input
       v-model="p_total_venta"
       label="Ingrese Precio total venta aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+      
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="entregada"
       label="Ingrese Entregada aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+      
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="entregada1"
       label="Ingrese Entregada1 aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+      
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="entregada2"
       label="Ingrese Entregada2 aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+      
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="guiad"
       label="Ingrese Guia D aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+      
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="factura"
       label="Ingrese Factura aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+ 
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="num_credito"
       label="Ingrese Numero de credito aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+      
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="nva_factura"
       label="Ingrese nva factura aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+      
       lazy-rules
     ></q-input>
 
