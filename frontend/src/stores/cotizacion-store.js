@@ -83,14 +83,13 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
       //$q.loading.show();
       const res = await api({
         method: 'DELETE',
-        url: '/cotizaciones',
+        url: `/cotizaciones/${meb}`,
         headers: {
           'Authorization': 'Bearer ' + userStore.token
         },
-        data: {
-          meb,
-        }
       });
+      cotizaciones.value = cotizaciones.value.filter((item) => item.meb !== meb)
+      
     } catch (error) {
       throw error.response?.data || error;
     } finally {
@@ -98,11 +97,30 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
     }
   }
 
+  const venderCotizacion = async (meb) => {
+    try {
+      //$q.loading.show();
+      console.log("vendiendo cotizacion 🎉");
+      const res = await api({
+        url: `/cotizaciones/${meb}`,
+        method: "PATCH",
+        headers: {
+          Authorization: "Bearer " + userStore.token,
+        },
+        data: { estado: "concretada" }
+      });
+    } catch (error) {
+      console.log(error.response?.data || error);
+    } finally {
+      //$q.loading.hide();
+    }
+  };
 
 
   return {
     createCotizacion,
     cotizaciones,
-    removeCotizacion
+    removeCotizacion,
+    venderCotizacion
   };
 });

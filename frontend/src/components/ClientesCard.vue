@@ -24,19 +24,7 @@ defineProps({
        <div class="row items-center no-wrap">
          <div class="col">
            <div class="text-h6">{{ cotizacion.cliente}} 
-            <q-btn color="grey-7" round flat icon="more_vert">
-             <q-menu cover auto-close>
-               <q-list>
-                 <q-item clickable>
-                   <q-item-section @click="useCotizacion.removeCotizacion(cotizacion.meb)">Eliminar cotización</q-item-section>
-                 </q-item>
-                 <q-item clickable>
-                   <q-item-section>Editar Cotización</q-item-section>
-                 </q-item>
-                 
-               </q-list>
-             </q-menu>
-           </q-btn></div>
+           </div>
           
            <q-card-section>
        

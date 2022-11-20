@@ -61,7 +61,7 @@ module.exports = configure(function (/* ctx */) {
       },
 
       vueRouterMode: 'history', // available values: 'hash', 'history'
-      // vueRouterBase,
+      //vueRouterBase: true,
       // vueDevtools,
       // vueOptionsAPI: false,
 
@@ -73,7 +73,7 @@ module.exports = configure(function (/* ctx */) {
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
-      // polyfillModulePreload: true,
+       polyfillModulePreload: true,
       // distDir
 
       // extendViteConf (viteConf) {},
