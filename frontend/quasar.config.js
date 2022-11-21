@@ -12,7 +12,7 @@
 const { configure } = require('quasar/wrappers');
 
 
-module.exports = configure(function (/* ctx */) {
+module.exports = configure(function (ctx ) {
   return {
     eslint: {
       // fix: true,
@@ -69,11 +69,18 @@ module.exports = configure(function (/* ctx */) {
 
       //publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: {
+        FRONT_URI: ctx.dev
+          ? "http://localhost:9000"
+          : "https://sogeco.netlify.app",
+        MY_API_REST: ctx.dev
+          ? "http://localhost:5000/api/v1"
+          : "https://backend-zea2.onrender.com/api/v1",
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
-       polyfillModulePreload: true,
+       //polyfillModulePreload: true,
       // distDir
 
       // extendViteConf (viteConf) {},
@@ -106,7 +113,7 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ['Notify'],
+      plugins: ['Notify', 'Dialog'],
       config: {
         notify: { /* look at QuasarConfOptions from the API card */ }
       }

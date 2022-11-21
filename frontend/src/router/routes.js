@@ -1,3 +1,5 @@
+import { api } from "src/boot/axios";
+
 
 const routes = [
   {
@@ -13,7 +15,10 @@ const routes = [
       { path: "agregarcotizacion", component: () => import("pages/AgregarCotizacionPage.vue") , meta: {auth: true}},
     ]
   },
-
+  {
+    path: "/404",
+    component: () => import("pages/ErrorNotFound.vue"),
+  },
   // Always leave this as last one,
   // but you can also remove it
   {
