@@ -20,6 +20,7 @@ export default route(function (/* { store, ssrContext } */) {
     const userStore = useUserStore();
 
     if(userStore.token) {
+        userStore.refreshToken();
         return next();
     }
     

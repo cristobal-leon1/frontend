@@ -92,7 +92,7 @@ const logout = () => {
 
 const accessUser = async() => {
   await userStore.access();
-  router.push('')
+  router.push('/')
 }
 
 
