@@ -81,26 +81,37 @@ defineProps({
      <q-card-section>
       <div class="row items-center no-wrap">
          <div class="col">
-           <div class="text-h6">{{ cotizacion.cliente}} 
+           <div class="text-h5">{{ cotizacion.cliente}} 
             <q-btn color="grey-7" round flat icon="more_vert">
              <q-menu cover auto-close>
                <q-list>
                  <q-item clickable>
                    <q-item-section @click="borrarCotizacion(cotizacion.meb)">Eliminar Venta</q-item-section>
                  </q-item>
-
-                 
                </q-list>
              </q-menu>
+             
            </q-btn></div>
-          
+           <div class="text-h6">
+            Marca: {{cotizacion.marca}}
+            </div>
+            <div class="text-h6">
+            Modelo: {{cotizacion.modelo}}
+            </div>
+            <div class="text-h6">
+              Origen: {{cotizacion.origen}}
+            </div>
+            
            <q-card-section>
        
       </q-card-section>
            
-
-
-          <div class="q-pa-md" style="max-width: 1999px">
+      <q-expansion-item
+        v-model="expanded"
+        label="VER MAS"
+      >
+        <q-card>
+          <q-card-section>
             <q-list bordered separator>
               <q-item  v-ripple>
                 <q-item-section >MEB: {{cotizacion.meb}}</q-item-section>
@@ -429,7 +440,10 @@ defineProps({
               </q-item>
 
             </q-list>
-          </div>
+          </q-card-section>
+        </q-card>
+      </q-expansion-item>
+
 
 
          </div>

@@ -3,7 +3,7 @@
     <q-header elevated>
       <q-toolbar>
         <q-btn
-        v-if="userStore.token"
+           v-if="userStore.token"
           flat
           dense
           round
@@ -79,14 +79,12 @@ const essentialLinks = [
   },
 ]
 
-const redirectt = (link) => {
-  router.push(link)
-}
 
 
 
-const logout = () => {
-  userStore.logout()
+
+const logout = async() => {
+  await userStore.logout()
   router.push('/login')
 }
 

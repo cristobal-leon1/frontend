@@ -93,11 +93,13 @@ export const useUserStore = defineStore("user", () => {
 
   const getVendedores = async() => {
     try {
-      //$q.loading.show();
+      /**/ $q.loading.show();
       const res2 = await api.get("/auth/refresh");
       token.value = res2.data.token;
       
       console.log("llamando a todos los vendedores ");
+      
+
       const res = await api({
         url: "/auth/protected",
         method: "GET",

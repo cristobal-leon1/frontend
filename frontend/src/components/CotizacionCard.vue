@@ -109,15 +109,27 @@ const venderCotiza = async(meb) => {
                </q-list>
              </q-menu>
            </q-btn></div>
-          
+           <div class="text-h6">
+            Marca: {{cotizacion.marca}}
+            </div>
+            <div class="text-h6">
+            Modelo: {{cotizacion.modelo}}
+            </div>
+            <div class="text-h6">
+              Origen: {{cotizacion.origen}}
+            </div>
+            
            <q-card-section>
        
       </q-card-section>
            
-
-
-          <div class="q-pa-md" style="max-width: 1999px">
-            <q-list bordered separator>
+      <q-expansion-item
+        v-model="expanded"
+        label="VER MAS"
+      >
+      <q-card>
+        <q-card-section>
+          <q-list bordered separator>
               <q-item  v-ripple>
                 <q-item-section >MEB: {{cotizacion.meb}}</q-item-section>
               </q-item>
@@ -445,7 +457,10 @@ const venderCotiza = async(meb) => {
               </q-item>
 
             </q-list>
-          </div>
+        </q-card-section>
+      </q-card>
+    </q-expansion-item>
+
 
 
          </div>
@@ -454,9 +469,7 @@ const venderCotiza = async(meb) => {
        </div>
      </q-card-section>
 
-     <q-card-section>
-       
-     </q-card-section>
+
 
      <q-separator />
 

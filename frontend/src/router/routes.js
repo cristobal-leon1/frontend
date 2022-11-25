@@ -7,7 +7,7 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') , meta: {auth: true}},
-      { path: 'login', component: () => import('pages/LoginPage.vue')},
+      { path: 'login', component: () => import('pages/LoginPage.vue'), },
       { path: "register", component: () => import("pages/RegisterPage.vue"), meta: {auth: true} },
       { path: "vendedores", component: () => import("pages/VendedoresPage.vue") , meta: {auth: true}},
       { path: "clientes", component: () => import("pages/ClientesPage.vue"), meta: {auth: true} },

@@ -5,6 +5,7 @@ import { useNotify } from "../componsables/notifyHook";
 const useCotizacion = useCotizacionStore();
 const { showNotify } = useNotify();
 const formAdd = ref(null);
+
 //CAMPOS
 const meb = ref("");
 const cliente = ref("");
@@ -31,6 +32,8 @@ const num_credito = ref("");
 const nva_factura = ref("");
 
 const loading = ref(false);
+
+
 
 const addCotizacion = async () => {
   try {
@@ -73,29 +76,84 @@ const addCotizacion = async () => {
     loading.value = false;
   }
 };
+
+const ultimaCotizacion = (clientex) =>{
+
+
+  let c = 0;
+  for(c; c < useCotizacion.cotizaciones.length; c++){
+    if(useCotizacion.cotizaciones[c].cliente == clientex) {
+      console.log('hola')
+      cliente.value = useCotizacion.cotizaciones[c].cliente;
+      solicitante.value = useCotizacion.cotizaciones[c].solicitante;
+      email.value= useCotizacion.cotizaciones[c].email;
+      fono.value= useCotizacion.cotizaciones[c].fono;
+      solicitud.value= useCotizacion.cotizaciones[c].solicitud;
+      marca.value= useCotizacion.cotizaciones[c].marca;
+      modelo.value= useCotizacion.cotizaciones[c].modelo;
+      pn.value= useCotizacion.cotizaciones[c].pn;
+      qty.value= useCotizacion.cotizaciones[c].qty;
+      origen.value= useCotizacion.cotizaciones[c].origen;
+      iso.value= useCotizacion.cotizaciones[c].iso;
+      oc.value= useCotizacion.cotizaciones[c].oc;
+      order_confir.value= useCotizacion.cotizaciones[c].order_confir;
+      p_unitario_venta.value= useCotizacion.cotizaciones[c].p_unitario_venta;
+      p_total_venta.value= useCotizacion.cotizaciones[c].p_total_venta;
+      entregada.value= useCotizacion.cotizaciones[c].entregada;
+      entregada1.value= useCotizacion.cotizaciones[c].entregada1;
+      entregada2.value= useCotizacion.cotizaciones[c].entregada2;
+      guiad.value= useCotizacion.cotizaciones[c].guiad;
+      factura.value= useCotizacion.cotizaciones[c].factura;
+      num_credito.value= useCotizacion.cotizaciones[c].num_credito; 
+      nva_factura.value= useCotizacion.cotizaciones[c].nva_factura;
+      break;
+    }
+    
+    
+  }
+
+};
+
 </script>
 
 <template>
+    <div class="q-pa-md">
+            <q-btn-dropdown color="primary" label="Ver Clientes">
+            <q-list v-for=" cliente of useCotizacion.clientes "
+            :key="cliente">
+                <q-item clickable v-close-popup @click="ultimaCotizacion(cliente)">
+                <q-item-section >
+                    <q-item-label>{{cliente}}</q-item-label>
+                </q-item-section>
+                </q-item>
+            </q-list>
+            </q-btn-dropdown>
+        </div>
   <q-form @submit.prevent="addCotizacion" ref="formAdd">
     <!-- CAMPOS -->
-    <q-input
-      v-model="meb"
-      label="Ingrese MEB aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
-      lazy-rules
-    ></q-input>
-
+  
     <q-input
       v-model="cliente"
       label="Ingrese Cliente aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+
+      lazy-rules
+    >
+    
+      </q-input>
+
+    <q-input
+      v-model="meb"
+      label="Ingrese MEB aquí"
+
       lazy-rules
     ></q-input>
+
+
 
     <q-input
       v-model="solicitante"
       label="Ingrese Solicitante aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+
       lazy-rules
     ></q-input>
 
@@ -116,42 +174,42 @@ const addCotizacion = async () => {
     <q-input
       v-model="solicitud"
       label="Ingrese Solicitud aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="marca"
       label="Ingrese Marca aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="modelo"
       label="Ingrese Modelo aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="pn"
       label="Ingrese P/N aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="qty"
       label="Ingrese QTY aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+
       lazy-rules
     ></q-input>
 
     <q-input
       v-model="origen"
       label="Ingrese Origen aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+
       lazy-rules
     ></q-input>
 
@@ -179,7 +237,7 @@ const addCotizacion = async () => {
     <q-input
       v-model="p_unitario_venta"
       label="Ingrese Precio unitario venta aquí"
-      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+
       lazy-rules
     ></q-input>
 

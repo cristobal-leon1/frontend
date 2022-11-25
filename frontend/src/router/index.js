@@ -18,9 +18,8 @@ export default route(function (/* { store, ssrContext } */) {
   Router.beforeEach(async(to, from, next) => {
     const requiredAuth = to.meta.auth
     const userStore = useUserStore();
-
+ /*
     if(userStore.token) {
-        userStore.refreshToken();
         return next();
     }
     
@@ -33,7 +32,8 @@ export default route(function (/* { store, ssrContext } */) {
       return next("/login");
     }
     return next();
- /*
+     */
+
     //si no existe el token 
     if(sessionStorage.getItem('user')) {
       await userStore.refreshToken();
@@ -53,7 +53,7 @@ export default route(function (/* { store, ssrContext } */) {
       next();
     }
     
-       */
+      
 
    
   });

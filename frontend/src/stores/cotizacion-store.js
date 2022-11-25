@@ -9,6 +9,7 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   const userStore = useUserStore();
 
   const cotizaciones = ref([]);
+  const clientes = ref([]);
 
 
 
@@ -117,7 +118,48 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
     }
   };
 
-  const variable = '';
+ const getClientes = async() => {
+  try {
+    //$q.loading.show();
+    console.log("llamando a todos los clientes 🎉");
+    const res = await api({
+      url: "/cotizaciones/b8385723a96a6b838858cdd6ca0a1e",
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + userStore.token,
+      },
+    });
+    //   links.value = res.data.links.map((item) => item);
+    clientes.value = [...res.data.clientes];
+  } catch (error) {
+    console.log(error.response?.data || error);
+  } finally {
+    //$q.loading.hide();
+  }
+ }
+
+ getClientes();
+
+ const getHistorial = async(cliente) => {
+  try {
+    //$q.loading.show();
+    console.log("llamando a todos los clientes 🎉");
+    const res = await api({
+      url: `/cotizaciones/${cliente}`,
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + userStore.token,
+      },
+    });
+    //   links.value = res.data.links.map((item) => item);
+    return console.log(res.data.cotizaciones);
+  } catch (error) {
+    console.log(error.response?.data || error);
+  } finally {
+    //$q.loading.hide();
+  }
+ }
+
 
   const editarCotizacion = async (meb, varCambio, cambio) => {
     if(varCambio == 'cliente') { try {
@@ -608,6 +650,8 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
     cotizaciones,
     removeCotizacion,
     venderCotizacion,
-    editarCotizacion
+    editarCotizacion,
+    clientes,
+    getHistorial
   };
 });
