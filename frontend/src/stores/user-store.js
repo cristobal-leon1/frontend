@@ -7,6 +7,9 @@ export const useUserStore = defineStore("user", () => {
   const token = ref(null);
   const expiresIn = ref(null);
   const vendedores = ref([]);
+  const correoVendedor = ref(null);
+
+  
 
   const access = async (email, password) => {
     try {
@@ -16,6 +19,7 @@ export const useUserStore = defineStore("user", () => {
       });
       token.value = res.data.token;
       expiresIn.value = res.data.expiresIn;
+      correoVendedor.value = email;
       sessionStorage.setItem("user", "🔥🔥");
       setTime();
     } catch (error) {
@@ -57,6 +61,7 @@ export const useUserStore = defineStore("user", () => {
   const logout = async () => {
     try {
       await api.get("/auth/logout");
+
     } catch (error) {
       console.log(error);
     } finally {
@@ -93,7 +98,7 @@ export const useUserStore = defineStore("user", () => {
 
   const getVendedores = async() => {
     try {
-      /**/ $q.loading.show();
+      /* $q.loading.show();*/
       const res2 = await api.get("/auth/refresh");
       token.value = res2.data.token;
       
@@ -128,5 +133,6 @@ export const useUserStore = defineStore("user", () => {
     logout,
     register,
     vendedores,
+    correoVendedor
   };
 });

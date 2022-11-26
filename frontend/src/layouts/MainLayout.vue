@@ -16,8 +16,9 @@
           Sogeco S.A.
         </q-toolbar-title>
         <!--<q-btn v-if="!userStore.token" color="green" @click="accessUser">Ingresar</q-btn>-->
-        
-        
+          <q-item-label v-if="userStore.token" class="q-mr-sm">{{userStore.correoVendedor}}    </q-item-label>
+
+          
         <q-btn v-if="userStore.token" color="red" @click="logout">Cerrar sesión</q-btn>
       </q-toolbar>
     </q-header>
