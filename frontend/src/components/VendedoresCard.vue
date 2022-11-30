@@ -25,12 +25,15 @@ defineProps({
          </div>
 
          <div class="col-auto">
+          
            <q-btn color="grey-7" round flat icon="more_vert">
              <q-menu cover auto-close>
                <q-list>
+                <!--
                  <q-item clickable>
                    <q-item-section>Eliminar vendedor</q-item-section>
                  </q-item>
+                 -->
                  <q-item clickable>
                    <q-item-section>Editar vendedor</q-item-section>
                  </q-item>
