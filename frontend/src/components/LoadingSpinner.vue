@@ -3,10 +3,18 @@
 </script>
 
 <template>
-    <div class="d-flex justify-content-center mt-5" >
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
+    <div class="q-pa-md q-gutter-xs">
+    <div class="q-gutter-md row items-center">
+
+
+      <q-spinner-hourglass
+        color="purple"
+        size="8em"
+      />
+
+        
     </div>
-    <p class="text-center mt-3">Cargando...</p>
+    <h5 class=" mt-3">Cargando...</h5>
+  </div>
+
 </template>

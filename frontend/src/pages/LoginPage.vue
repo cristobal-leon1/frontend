@@ -9,11 +9,15 @@ const userStore = useUserStore();
 const router = useRouter();
 const email = ref('admin@admin.cl');
 const password = ref('adminadmin');
+const cargando = ref(true);
+
 const handleSubmit = async () => {
   try {
-    console.log("pasó las validaciones");
+    cargando.value = false;
+    $q.loading.show();
+
     await userStore.access(email.value, password.value);
-    router.push("/");
+
     email.value = "";
     password.value = "";
   } catch (error) {
@@ -25,7 +29,10 @@ const handleSubmit = async () => {
     } else {
       alertDialogBackend();
     }
-  }
+  } finally {
+     $q.loading.hide();
+     router.push("/");
+    }
 };
 const alertDialogBackend = (message = "Error en el servidor") => {
   $q.dialog({
@@ -36,7 +43,7 @@ const alertDialogBackend = (message = "Error en el servidor") => {
 </script>
 
 <template>
-  <q-page class="row justify-center">
+  <q-page v-if="cargando" class="row justify-center">
     <div class="col-12 col-sm-6 col-md-5">
       <h3>Login</h3>
       <q-form @submit.prevent="handleSubmit">

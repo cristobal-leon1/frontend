@@ -52,11 +52,12 @@
 </template>
 
 <script setup>
+import { useQuasar } from "quasar";
 import {  ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 import { useUserStore } from '../stores/user-store'
 import { useRouter } from 'vue-router'
-
+const $q = useQuasar();
 const userStore = useUserStore();
 const router = useRouter();
 
@@ -85,14 +86,19 @@ const essentialLinks = [
 
 
 const logout = async() => {
-  await userStore.logout()
-  router.push('/login')
+  try {
+    $q.loading.show();
+    await userStore.logout()
+  } catch (error) {
+    console.log("error", error);
+  } finally {
+     $q.loading.hide();
+     router.push('/login')
+    }
+  
+
 }
 
-const accessUser = async() => {
-  await userStore.access();
-  router.push('/')
-}
 
 
 

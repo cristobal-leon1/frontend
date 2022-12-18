@@ -51,10 +51,11 @@ defineProps({
      </q-card-section>
 
      <q-separator />
-
+     <!--
      <q-card-actions>
        <q-btn flat>Ver Comisiones</q-btn>
      </q-card-actions>
+     -->
    </q-card>
 </div>
 </template>

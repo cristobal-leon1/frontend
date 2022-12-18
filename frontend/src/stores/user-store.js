@@ -2,16 +2,17 @@ import { defineStore } from "pinia";
 import { api } from "src/boot/axios";
 import { ref } from "vue";
 
-
 export const useUserStore = defineStore("user", () => {
+  
   const token = ref(null);
   const expiresIn = ref(null);
   const vendedores = ref([]);
   const correoVendedor = ref(null);
 
-  
+  const loading = ref(true);
 
   const access = async (email, password) => {
+    
     try {
       const res = await api.post("/auth/login", {
         email: email,
@@ -31,11 +32,14 @@ export const useUserStore = defineStore("user", () => {
       } else {
         console.log("Error", error.message);
       }
+    } finally {
+      loading.value = false;
     }
   };
 
   const register = async (email, nombre, password, repassword) => {
     try {
+
       const res = await api.post("/auth/register", {
         email: email,
         nombre: nombre,
@@ -55,18 +59,25 @@ export const useUserStore = defineStore("user", () => {
       } else {
         console.log("Error", error.message);
       }
+    } finally {
+      loading.value = false;
     }
   };
 
   const logout = async () => {
     try {
+ 
       await api.get("/auth/logout");
 
     } catch (error) {
       console.log(error);
     } finally {
+      loading.value = false;
       resetStore();
       sessionStorage.removeItem("user");
+
+        
+
     }
   };
 
@@ -97,12 +108,12 @@ export const useUserStore = defineStore("user", () => {
   };
 
   const getVendedores = async() => {
+    
     try {
-      /* $q.loading.show();*/
+
       const res2 = await api.get("/auth/refresh");
       token.value = res2.data.token;
       
-      console.log("llamando a todos los vendedores ");
       
 
       const res = await api({
@@ -119,9 +130,9 @@ export const useUserStore = defineStore("user", () => {
     } catch (error) {
       console.log(error.response?.data || error);
     } finally {
-      //$q.loading.hide();
-    }
-  }
+        loading.value = false;
+     }
+  };
 
   getVendedores();
 

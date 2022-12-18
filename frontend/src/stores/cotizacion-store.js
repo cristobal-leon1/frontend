@@ -2,6 +2,8 @@ import { defineStore } from "pinia";
 import { api } from "src/boot/axios";
 import { ref } from "vue";
 import { useUserStore } from "./user-store";
+import { useQuasar } from 'quasar'
+
 
 
 export const useCotizacionStore = defineStore("cotizacion", () => {
@@ -10,12 +12,11 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
 
   const cotizaciones = ref([]);
   const clientes = ref([]);
-
-
+  const $q = useQuasar();
 
   const createCotizacion = async(meb, cliente, solicitante, email, fono, solicitud, marca, modelo, pn, qty, origen, iso, oc, order_confir, p_unitario_venta, p_total_venta, entregada, entregada1,  entregada2,  guiad, factura, num_credito, nva_factura) => {
     try {
-      //$q.loading.show();
+      $q.loading.show();
       const res = await api({
         method: 'POST',
         url: '/cotizaciones',
@@ -52,13 +53,13 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
     } catch (error) {
       throw error.response?.data || error;
     } finally {
-     // $q.loading.hide();
+     $q.loading.hide();
     }
   }
 
   const getCotizaciones = async () => {
     try {
-      //$q.loading.show();
+      $q.loading.show();
       console.log("llamando a todos las cotizaciones 🎉");
       const res = await api({
         url: "/cotizaciones",
@@ -70,9 +71,9 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
       //   links.value = res.data.links.map((item) => item);
       cotizaciones.value = [...res.data.cotizaciones];
     } catch (error) {
-      console.log(error.response?.data || error);
+      //console.log(error.response?.data || error);
     } finally {
-      //$q.loading.hide();
+      $q.loading.hide();
     }
   };
 
@@ -81,7 +82,7 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
 
   const removeCotizacion = async(meb) => {
     try {
-      //$q.loading.show();
+      $q.loading.show();
       const res = await api({
         method: 'DELETE',
         url: `/cotizaciones/${meb}`,
@@ -94,13 +95,13 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
     } catch (error) {
       throw error.response?.data || error;
     } finally {
-     // $q.loading.hide();
+     $q.loading.hide();
     }
   }
 
   const venderCotizacion = async (meb) => {
     try {
-      //$q.loading.show();
+      $q.loading.show();
       console.log("vendiendo cotizacion 🎉");
       const res = await api({
         url: `/cotizaciones/${meb}`,
@@ -114,13 +115,13 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
     } catch (error) {
       console.log(error.response?.data || error);
     } finally {
-      //$q.loading.hide();
+      $q.loading.hide();
     }
   };
 
  const getClientes = async() => {
   try {
-    //$q.loading.show();
+    $q.loading.show();
     console.log("llamando a todos los clientes 🎉");
     const res = await api({
       url: "/cotizaciones/b8385723a96a6b838858cdd6ca0a1e",
@@ -134,7 +135,7 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    $q.loading.hide();
   }
  }
 
@@ -142,7 +143,7 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
 
  const getHistorial = async(cliente) => {
   try {
-    //$q.loading.show();
+    $q.loading.show();
     console.log("llamando a todos los clientes 🎉");
     const res = await api({
       url: `/cotizaciones/${cliente}`,
@@ -156,14 +157,14 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    $q.loading.hide();
   }
  }
 
 
   const editarCotizacion = async (meb, varCambio, cambio) => {
     if(varCambio == 'cliente') { try {
-      //$q.loading.show();
+      q.loading.show();
       console.log("editando cotizacion 🎉");
       const res = await api({
         url: `/cotizaciones/${meb}`,
@@ -179,11 +180,11 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
     } catch (error) {
       console.log(error.response?.data || error);
     } finally {
-      //$q.loading.hide();
+      q.loading.hide();
     } }
 
     if(varCambio == 'solicitante') { try {
-      //$q.loading.show();
+      q.loading.show();
       console.log("editando cotizacion 🎉");
       const res = await api({
         url: `/cotizaciones/${meb}`,
@@ -199,11 +200,11 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
     } catch (error) {
       console.log(error.response?.data || error);
     } finally {
-      //$q.loading.hide();
+      q.loading.hide();
     } }
 
     if(varCambio == 'email') { try {
-      //$q.loading.show();
+      q.loading.show();
       console.log("editando cotizacion 🎉");
       const res = await api({
         url: `/cotizaciones/${meb}`,
@@ -219,11 +220,11 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
     } catch (error) {
       console.log(error.response?.data || error);
     } finally {
-      //$q.loading.hide();
+      q.loading.hide();
     } }
 
     if(varCambio == 'fono') { try {
-      //$q.loading.show();
+      q.loading.show();
       console.log("editando cotizacion 🎉");
       const res = await api({
         url: `/cotizaciones/${meb}`,
@@ -239,14 +240,14 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
     } catch (error) {
       console.log(error.response?.data || error);
     } finally {
-      //$q.loading.hide();
+      q.loading.hide();
     } }
     
  
 
   if(varCambio == 'fecha') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -262,12 +263,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'solicitud') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -283,12 +284,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'marca') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -304,12 +305,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'modelo') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -325,12 +326,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'pn') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -346,12 +347,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'qty') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -367,12 +368,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'origen') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -388,12 +389,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'iso') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -409,12 +410,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'oc') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -430,12 +431,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'order_confir') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -451,12 +452,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'p_unitario_venta') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -472,12 +473,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'p_total_venta') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -493,12 +494,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'entregada') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -514,12 +515,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'entregada1') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -535,12 +536,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'entregada2') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -556,12 +557,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'guiad') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -577,12 +578,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'factura') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -598,12 +599,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'num_credito') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -619,12 +620,12 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
   if(varCambio == 'nva_factura') { 
     try {
-    //$q.loading.show();
+    q.loading.show();
     console.log("editando cotizacion 🎉");
     const res = await api({
       url: `/cotizaciones/${meb}`,
@@ -640,7 +641,7 @@ export const useCotizacionStore = defineStore("cotizacion", () => {
   } catch (error) {
     console.log(error.response?.data || error);
   } finally {
-    //$q.loading.hide();
+    q.loading.hide();
   } }
 
 };

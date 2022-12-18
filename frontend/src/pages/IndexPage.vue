@@ -1,4 +1,5 @@
 <template>
+  <!--<LoadingSpinner ></LoadingSpinner>-->
   <q-page padding>
     <h3>Cotizaciones</h3>
     <q-btn to="/agregarcotizacion">Crear Cotizacion</q-btn>
@@ -22,6 +23,7 @@
 
 import CotizacionCard from 'src/components/CotizacionCard.vue';
 import { useCotizacionStore } from '../stores/cotizacion-store'
+
 
 const cotizacionStore = useCotizacionStore();
 

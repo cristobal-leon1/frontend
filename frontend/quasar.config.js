@@ -113,7 +113,7 @@ module.exports = configure(function (ctx ) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ['Notify', 'Dialog'],
+      plugins: ['Notify', 'Dialog', "Loading"],
       config: {
         notify: { /* look at QuasarConfOptions from the API card */ }
       }
