@@ -75,15 +75,12 @@ export const useUserStore = defineStore("user", () => {
       loading.value = false;
       resetStore();
       sessionStorage.removeItem("user");
-
-        
-
     }
   };
 
   const setTime = () => {
     setTimeout(() => {
-      console.log("se refrescó");
+
       refreshToken();
     }, expiresIn.value * 1000 - 6000);
   };

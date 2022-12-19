@@ -1,13 +1,10 @@
-import { api } from "src/boot/axios";
-
-
 const routes = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') , meta: {auth: true}},
-      { path: 'login', component: () => import('pages/LoginPage.vue'), meta: {auth: null}},
+      { path: 'login', component: () => import('pages/LoginPage.vue'),},
       { path: "register", component: () => import("pages/RegisterPage.vue"), meta: {auth: true} },
       { path: "vendedores", component: () => import("pages/VendedoresPage.vue") , meta: {auth: true}},
       { path: "clientes", component: () => import("pages/ClientesPage.vue"), meta: {auth: true} },

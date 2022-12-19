@@ -1,7 +1,7 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
+  <q-layout view="lHh Lpr lFf" >
+    <q-header elevated >
+      <q-toolbar class="bg-green" >
         <q-btn
            v-if="userStore.token"
           flat
@@ -12,7 +12,7 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title>
+        <q-toolbar-title >
           Sogeco S.A.
         </q-toolbar-title>
         <!--<q-btn v-if="!userStore.token" color="green" @click="accessUser">Ingresar</q-btn>-->
@@ -28,6 +28,7 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
+      
     >
       <q-list>
         <q-item-label

@@ -43,7 +43,7 @@ const alertDialogBackend = (message = "Error en el servidor") => {
 </script>
 
 <template>
-  <q-page v-if="cargando" class="row justify-center">
+  <q-page v-if="cargando" class="row justify-center" padding>
     <div class="col-12 col-sm-6 col-md-5">
       <h3>Login</h3>
       <q-form @submit.prevent="handleSubmit">
